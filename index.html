@@ -1,1 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Lista de regalos | Randall & Milagros</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 30px 16px 50px;
+  background: #f5f2e9;
+  color: #4d5543;
+  font-family: Arial, sans-serif;
+}
+
+.contenedor {
+  max-width: 650px;
+  margin: auto;
+}
+
+.encabezado {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-family: Georgia, serif;
+  font-size: 36px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  color: #59624b;
+}
+
+.nombres {
+  font-family: Georgia, serif;
+  font-size: 22px;
+  color: #6b735e;
+  margin-bottom: 6px;
+}
+
+.fecha {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: #888;
+}
+
+.intro {
+  margin-top: 25px;
+  line-height: 1.6;
+  color: #777;
+  font-size: 15px;
+}
+
+.categoria {
+  margin-top: 38px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #c9c7bb;
+  font-family: Georgia, serif;
+  font-size: 23px;
+  font-weight: normal;
+  color: #59624b;
+}
+
+.regalo {
+  background: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+  transition: 0.2s;
+}
+
+.regalo:hover {
+  transform: translateY(-1px);
+}
+
+.regalo input {
+  width: 19px;
+  height: 19px;
+  accent-color: #687354;
+}
+
+.nombre-regalo {
+  flex: 1;
+  font-size: 15px;
+  color: #4d4d4d;
+}
+
+button {
+  border: none;
+  background: #687354;
+  color: white;
+  padding: 9px 13px;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #566044;
+}
+
+.reservado .nombre-regalo {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.reservado button {
+  background: #e4e4df;
+  color: #777;
+  cursor: default;
+}
+
+.estado {
+  display: none;
+  font-size: 12px;
+  color: #687354;
+  font-weight: bold;
+}
+
+.reservado .estado {
+  display: inline;
+}
+
+.nota {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #888;
+}
+
+@media (max-width: 500px) {
+
+  body {
+    padding: 25px 12px 40px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  .categoria {
+    font-size: 21px;
+  }
+
+  .regalo {
+    padding: 13px;
+  }
+
+  button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .nombre-regalo {
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+  <div class="encabezado">
+    <h1>Lista de regalos</h1>
+
+    <div class="nombres">
+      Randall & Milagros
+    </div>
+
+    <div class="fecha">
+      21 · 11 · 2026
+    </div>
+
+    <p class="intro">
+      Su presencia en nuestra boda es nuestro mejor regalo.
+      Si desean acompañarnos también con un detalle,
+      hemos preparado esta lista con algunas cosas para nuestro hogar.
+    </p>
+  </div>
+
+
+  <!-- DORMITORIO -->
+
+  <h2 class="categoria">Dormitorio</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de cama Queen</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Pack de 2 almohadas ergonómicas</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Alfombra para dormitorio</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Ropero de 6 puertas</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Espejo de cuerpo entero</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- DECORACIÓN -->
+
+  <h2 class="categoria">Decoración</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Cuadros decorativos</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Lámpara de pie</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Librero de madera</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Árbol de Navidad</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- COCINA Y COMEDOR -->
+
+  <h2 class="categoria">Cocina y comedor</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Escurridor de platos de acero inoxidable</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Platos de sitio</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de vajilla</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de cubiertos de acero inoxidable</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de ollas Tramontina</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Set de cuchillos de acero inoxidable</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de comedor</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Bandejas de vidrio</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Termo de acero inoxidable</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Bowls para horno</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Tabla de cortar de madera</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de cucharones</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Set de táppers herméticos</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Caja china</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- ELECTRODOMÉSTICOS -->
+
+  <h2 class="categoria">Electrodomésticos</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Horno eléctrico</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Sandwichera Oster</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Cafetera Oster</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Batidora de inmersión Oster</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Extractora</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Aspiradora</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Plancha Oster</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Mesa de planchar</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- SALA -->
+
+  <h2 class="categoria">Sala</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de sillones</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Mesa de centro</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- BAÑO -->
+
+  <h2 class="categoria">Baño</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Juego de toallas</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Mueble o estante organizador para baño</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- PARRILLA Y BAR -->
+
+  <h2 class="categoria">Parrilla y bar</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Carro de bar</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Set de coctelería</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Set de cuchillos para parrilla</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Hielera</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <!-- ORGANIZACIÓN -->
+
+  <h2 class="categoria">Organización y otros</h2>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Zapatero organizador</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+  <div class="regalo">
+    <input type="checkbox">
+    <span class="nombre-regalo">Estante de metal para garage</span>
+    <button onclick="reservar(this)">Reservar</button>
+    <span class="estado">Reservado</span>
+  </div>
+
+
+  <p class="nota">
+    Gracias por ser parte de este momento tan especial para nosotros. 🤍
+  </p>
+
+</div>
+
+<script>
+function reservar(boton) {
+
+  const regalo = boton.parentElement;
+
+  regalo.classList.add("reservado");
+
+  boton.textContent = "Reservado";
+
+  boton.disabled = true;
+
+  const checkbox = regalo.querySelector("input");
+
+  checkbox.checked = true;
+
+  checkbox.disabled = true;
+}
+</script>
+
+</body>
+</html>
