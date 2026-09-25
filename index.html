@@ -527,22 +527,68 @@ button:hover {
 </div>
 
 <script>
-function reservar(boton) {
+
+const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbyOatvYG8iT7sx6QqbPyecg8HzA1AyQDmxoQAK5t72lhdLM9YevNmT3sVr2SW-_L1Rl0g/exec";
+
+async function reservar(boton) {
 
   const regalo = boton.parentElement;
+  const nombreRegalo = regalo.querySelector(".nombre-regalo").textContent.trim();
 
-  regalo.classList.add("reservado");
+  const nombre = prompt("Escribe tu nombre:");
 
-  boton.textContent = "Reservado";
+  if (!nombre) {
+    return;
+  }
 
   boton.disabled = true;
+  boton.textContent = "Reservando...";
 
-  const checkbox = regalo.querySelector("input");
+  try {
 
-  checkbox.checked = true;
+    const respuesta = await fetch(URL_APPS_SCRIPT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        regalo: nombreRegalo,
+        nombre: nombre
+      })
+    });
 
-  checkbox.disabled = true;
+    const resultado = await respuesta.json();
+
+    if (resultado.ok) {
+
+      regalo.classList.add("reservado");
+      boton.textContent = "Reservado";
+
+      const checkbox = regalo.querySelector("input");
+      checkbox.checked = true;
+      checkbox.disabled = true;
+
+      alert("¡Gracias! El regalo ha sido reservado correctamente. ❤️");
+
+    } else {
+
+      boton.disabled = false;
+      boton.textContent = "Reservar";
+
+      alert(resultado.mensaje);
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    boton.disabled = false;
+    boton.textContent = "Reservar";
+
+    alert("No se pudo realizar la reserva. Inténtalo nuevamente.");
+  }
 }
+
 </script>
 
 </body>
