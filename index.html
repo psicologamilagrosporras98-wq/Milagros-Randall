@@ -1,1 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Lista de regalos | Randall & Milagros</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f4ed;
+  color: #3f4638;
+  margin: 0;
+  padding: 30px 18px;
+}
+
+.contenedor {
+  max-width: 600px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-family: Georgia, serif;
+  font-weight: normal;
+  font-size: 32px;
+}
+
+.subtitulo {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #777;
+}
+
+.categoria {
+  font-family: Georgia, serif;
+  font-size: 23px;
+  margin-top: 30px;
+  border-bottom: 1px solid #c8c5b8;
+  padding-bottom: 8px;
+}
+
+.regalo {
+  background: white;
+  margin: 12px 0;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.regalo input {
+  width: 20px;
+  height: 20px;
+}
+
+.regalo span {
+  flex: 1;
+}
+
+button {
+  background: #667052;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reservado {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.estado {
+  font-size: 13px;
+  color: #667052;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<h1>Lista de regalos</h1>
+
+<p class="subtitulo">
+  Randall & Milagros<br>
+  21.11.2026
+</p>
+
+<h2 class="categoria">Cocina</h2>
+
+<div class="regalo">
+  <input type="checkbox">
+  <span>Juego de copas</span>
+  <button>Reservar</button>
+</div>
+
+<div class="regalo">
+  <input type="checkbox">
+  <span>Juego de platos</span>
+  <button>Reservar</button>
+</div>
+
+<div class="regalo">
+  <input type="checkbox">
+  <span>Licuadora</span>
+  <button>Reservar</button>
+</div>
+
+<h2 class="categoria">Hogar</h2>
+
+<div class="regalo">
+  <input type="checkbox">
+  <span>Juego de toallas</span>
+  <button>Reservar</button>
+</div>
+
+<div class="regalo">
+  <input type="checkbox">
+  <span>Ropa de cama</span>
+  <button>Reservar</button>
+</div>
+
+</div>
+
+</body>
+</html>
