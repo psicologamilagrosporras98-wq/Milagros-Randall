@@ -274,9 +274,6 @@ h1 {
 
   </header>
 
-
-  <!-- DORMITORIO -->
-
   <h2 class="categoria">🛏️ Dormitorio</h2>
 
   <div class="regalo">
@@ -332,9 +329,6 @@ h1 {
     </div>
     <div class="estado">Regalo reservado ✓</div>
   </div>
-
-
-  <!-- HOGAR -->
 
   <h2 class="categoria">🏡 Hogar</h2>
 
@@ -401,9 +395,6 @@ h1 {
     <div class="estado">Regalo reservado ✓</div>
   </div>
 
-
-  <!-- COCINA Y COMEDOR -->
-
   <h2 class="categoria">🍽️ Cocina y comedor</h2>
 
   <div class="regalo">
@@ -459,9 +450,6 @@ h1 {
     </div>
     <div class="estado">Regalo reservado ✓</div>
   </div>
-
-
-  <!-- ELECTRODOMÉSTICOS -->
 
   <h2 class="categoria">⚡ Electrodomésticos</h2>
 
@@ -519,11 +507,12 @@ h1 {
     <div class="estado">Regalo reservado ✓</div>
   </div>
 
-  <div class="regalo">
+  <!-- ASPIRADORA YA RESERVADA -->
+  <div class="regalo reservado">
     <div class="regalo-fila">
-      <input type="checkbox">
+      <input type="checkbox" checked disabled>
       <span class="nombre-regalo">Aspiradora Karcher</span>
-      <button class="btn-reservar" onclick="reservar(this)">Reservar</button>
+      <button class="btn-reservar" disabled>Reservado ✓</button>
     </div>
     <div class="estado">Regalo reservado ✓</div>
   </div>
@@ -545,9 +534,6 @@ h1 {
     </div>
     <div class="estado">Regalo reservado ✓</div>
   </div>
-
-
-  <!-- PARRILLA Y BAR -->
 
   <h2 class="categoria">🥂 Parrilla y bar</h2>
 
@@ -578,9 +564,6 @@ h1 {
     <div class="estado">Regalo reservado ✓</div>
   </div>
 
-
-  <!-- OTROS -->
-
   <h2 class="categoria">📦 Otros</h2>
 
   <div class="regalo">
@@ -610,9 +593,6 @@ h1 {
     <div class="estado">Regalo reservado ✓</div>
   </div>
 
-
-  <!-- REGALO EN EFECTIVO -->
-
   <h2 class="categoria">💵 Regalo en efectivo</h2>
 
   <div class="cuentas">
@@ -623,21 +603,15 @@ h1 {
       Gracias por ser parte de este nuevo comienzo. 🤍
     </div>
 
-
     <div class="cuenta-banco">
-
       <strong>BBVA – Soles</strong>
 
       <div class="dato-cuenta">
-        <span>
-          Titular: Randall Edhu Ita Balta
-        </span>
+        <span>Titular: Randall Edhu Ita Balta</span>
       </div>
 
       <div class="dato-cuenta">
-        <span>
-          N.º de cuenta: 0011-0717-0200276262
-        </span>
+        <span>N.º de cuenta: 0011-0717-0200276262</span>
         <button class="btn-copiar"
           onclick="copiarTexto('0011-0717-0200276262', this)">
           Copiar
@@ -645,32 +619,23 @@ h1 {
       </div>
 
       <div class="dato-cuenta">
-        <span>
-          CCI: 01171700020027626269
-        </span>
+        <span>CCI: 01171700020027626269</span>
         <button class="btn-copiar"
           onclick="copiarTexto('01171700020027626269', this)">
           Copiar
         </button>
       </div>
-
     </div>
 
-
     <div class="cuenta-banco">
-
       <strong>BCP – Soles</strong>
 
       <div class="dato-cuenta">
-        <span>
-          Titular: Randall Edhu Ita Balta
-        </span>
+        <span>Titular: Randall Edhu Ita Balta</span>
       </div>
 
       <div class="dato-cuenta">
-        <span>
-          N.º de cuenta: 21596736193020
-        </span>
+        <span>N.º de cuenta: 21596736193020</span>
         <button class="btn-copiar"
           onclick="copiarTexto('21596736193020', this)">
           Copiar
@@ -678,19 +643,15 @@ h1 {
       </div>
 
       <div class="dato-cuenta">
-        <span>
-          CCI: 00221519673619302028
-        </span>
+        <span>CCI: 00221519673619302028</span>
         <button class="btn-copiar"
           onclick="copiarTexto('00221519673619302028', this)">
           Copiar
         </button>
       </div>
-
     </div>
 
   </div>
-
 
   <p class="nota">
     Gracias por acompañarnos en este momento tan especial. 🤍
@@ -698,16 +659,41 @@ h1 {
 
 </div>
 
-
 <script>
 
 const URL_APPS_SCRIPT =
 "https://script.google.com/macros/s/AKfycbzut4zPiVSXUAH25HW4JKa9Xl63wNRNUlWpWYSNIa-YySfTSSTbzZh5gAAHuAV80LnH/exec";
 
 
+/* MARCAR UN REGALO COMO RESERVADO */
+
+function marcarReservado(regalo) {
+
+  if (!regalo) return;
+
+  regalo.classList.add("reservado");
+
+  const boton = regalo.querySelector(".btn-reservar");
+  const checkbox = regalo.querySelector("input");
+
+  if (boton) {
+    boton.textContent = "Reservado ✓";
+    boton.disabled = true;
+    boton.removeAttribute("onclick");
+  }
+
+  if (checkbox) {
+    checkbox.checked = true;
+    checkbox.disabled = true;
+  }
+}
+
+
+/* RESERVAR REGALO */
+
 async function reservar(boton) {
 
-  const regalo = boton.parentElement;
+  const regalo = boton.closest(".regalo");
 
   const nombreRegalo =
     regalo.querySelector(".nombre-regalo").textContent.trim();
@@ -738,21 +724,11 @@ async function reservar(boton) {
 
     });
 
-
     const resultado = await respuesta.json();
-
 
     if (resultado.ok) {
 
-      regalo.classList.add("reservado");
-
-      boton.textContent = "Reservado";
-
-      const checkbox =
-        regalo.querySelector("input");
-
-      checkbox.checked = true;
-      checkbox.disabled = true;
+      marcarReservado(regalo);
 
       alert(
         "¡Gracias! El regalo ha sido reservado correctamente. ❤️"
@@ -761,20 +737,17 @@ async function reservar(boton) {
     } else {
 
       boton.disabled = false;
-
       boton.textContent = "Reservar";
 
       alert(resultado.mensaje);
 
     }
 
-
   } catch (error) {
 
     console.error(error);
 
     boton.disabled = false;
-
     boton.textContent = "Reservar";
 
     alert(
@@ -785,6 +758,63 @@ async function reservar(boton) {
 
 }
 
+
+/* CARGAR RESERVAS EXISTENTES */
+
+async function cargarReservas() {
+
+  try {
+
+    const respuesta = await fetch(
+      URL_APPS_SCRIPT + "?accion=reservas&" + Date.now(),
+      {
+        method: "GET",
+        cache: "no-store"
+      }
+    );
+
+    const resultado = await respuesta.json();
+
+    if (
+      resultado &&
+      resultado.ok &&
+      Array.isArray(resultado.reservas)
+    ) {
+
+      const regalos =
+        document.querySelectorAll(".regalo");
+
+      regalos.forEach(function(regalo) {
+
+        const nombre =
+          regalo.querySelector(".nombre-regalo");
+
+        if (!nombre) return;
+
+        const nombreRegalo =
+          nombre.textContent.trim();
+
+        if (resultado.reservas.includes(nombreRegalo)) {
+          marcarReservado(regalo);
+        }
+
+      });
+
+    }
+
+  } catch (error) {
+
+    console.log(
+      "No se pudieron cargar las reservas existentes.",
+      error
+    );
+
+  }
+
+}
+
+
+/* COPIAR CUENTAS */
 
 function copiarTexto(texto, boton) {
 
@@ -831,6 +861,14 @@ function copiarTexto(texto, boton) {
     });
 
 }
+
+
+/* AL ABRIR LA PÁGINA */
+
+window.addEventListener(
+  "DOMContentLoaded",
+  cargarReservas
+);
 
 </script>
 
